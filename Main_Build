@@ -1,0 +1,116 @@
+import data_set
+#import admin
+from datetime import date
+
+
+headings = ["ID","First_Name", "Surname", "Account_Number", "Email_Address", "Account_Status", "Open_Account", "Days_Open", "DSAR_Received_Date"]
+valid_account_status = {1: "Open", 2: "Closed"}
+
+
+def print_welcome():
+    print("\nDSAR Data Access- Version 1.1")
+    print("-----------------------------\n")
+    
+    
+def print_customer_details():
+    print(f"{headings[0]:4} {headings[1]:15} {headings[2]:15} "
+    f"{headings[3]:17} {headings[4]:30} {headings[5]:12} "
+    f"{headings[6]:15} {headings[7]:10} {headings[8]:20} {headings[9]:100} ")
+
+    for customer in data_set.customer_dictionary:
+        print(
+         f"{customer:4}  {data_set.customer_dictionary[customer]['First_Name']:15}  {data_set.customer_dictionary[customer]['Surname']:15} "
+         f"{data_set.customer_dictionary[customer]['Account_Number']:17} ",
+         f"{data_set.customer_dictionary[customer]['Email_Address']:30} ",
+         f"{data_set.customer_dictionary[customer]['Account_Status']:12} ",
+         f"{data_set.customer_dictionary[customer]['Open_Account']:15} ",
+         f"{data_set.customer_dictionary[customer]['Days_Open']:10} ", 
+         f"{data_set.customer_dictionary[customer]['DSAR_Received_Date']:%d-%m-%y}"
+             )
+
+
+def print_menu_options():
+    print("\nEnter option from list below ")
+    print("--------------------------------------------")
+    print("Enter L - Lookup account")
+    print("Enter R - Read user errors")
+    print("Enter Q - Quit application")
+
+
+def valid_menu_choice():
+    valid_options = {'L', 'Q', 'R'}
+    
+    while True:
+        menu_choice = input("\nPlease choose an option > ").upper()
+        if menu_choice not in valid_options:
+            print("This is not a valid option, please try again")
+            continue
+        break
+    return menu_choice
+    
+
+def customer_details():
+    while True:
+        Account_Number = input("Please enter account number: ")
+# validating the length is 8
+        if 8 < len(reg) > 8:
+            break
+        print(f"Account number must be 8 characters long")
+    
+
+def get_customer_data(usage_string):
+    while True:
+        try:
+            value = input(f"Please enter the account number {usage_string} or 'X' to Return to Main Menu: ")
+            if value.upper() == "X":
+                return "X"
+            value = int(value)
+            for key in data_set.customer_dictionary:
+                if value == key:
+                    return value
+            print("Please enter a valid account number")
+        except ValueError as e:
+            print("Account Numbers should be 8 numerical digits")
+            
+            
+def view_customer_contact_records(Contact_Notes):
+    if not data_set.customer_dictionary[Contact_Notes]["Contact_Notes"] is None:
+        for record in data_set.customer_dictionary[Contact_Notes]["Contact_Notes"]:
+            print("------------Customer Contact Notes----------------")
+            for item in record:
+                print(f"{item:10}: {record[item]}")
+            print("------------End of Customer Contact Notes---------")
+    else:
+        print("There are no contact notes for this customer")
+        
+        
+def read_me():
+    print("""--Sample Console Application 
+        V1.1 Released 20/03/2024 
+        Common Errors:
+        1/ User does not input an account number with 8 digits
+        --""")
+        
+        
+pause = False
+
+# main loop
+while True:
+    if pause:
+        input("Press enter to continue: ")
+    print_welcome()
+    print_customer_details()
+    print_menu_options()
+    pause = True
+    option = valid_menu_choice()
+    if option == 'L':
+        customer_details()
+    elif option == 'R':
+        read_me()
+    elif option == 'Q':
+        response = input('Would you like to exit the customer lookup, Y or N?').upper()
+        if response == 'Y':
+            break
+        else:
+            pass
+    print('Thank you for using the lookup. Have a great day. Goodbye.')
