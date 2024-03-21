@@ -35,9 +35,9 @@ def print_customer_details():
 def print_menu_options():
     print("\nEnter option from list below ")
     print("--------------------------------------------")
-    print("Enter L - Lookup account")
-    print("Enter S - Show all customer accounts")
-    print("Enter R - Read user errors")
+    print("Enter S - Show all customer accounts and IDs")
+    print("Enter L - Lookup account with customer ID")
+    print("Enter R - Read common user errors")
     print("Enter Q - Quit application\n")
 
 
@@ -100,7 +100,10 @@ def read_me():
     print("""\n--Sample Console Application 
   V1.1 Released 20/03/2024 
   Common Errors:
-  1/ User does not input an account number with 8 digits
+  1/ User does not input a valid customer ID number
+  2/ User inputs an account number instead of the ID number
+  3/ In the main menu, the user does not type in a valid letter
+  4/ The user does not use capital letters
   --\n""")
 
 pause = False
@@ -128,6 +131,8 @@ while True:
             print('\nThank you for using the lookup. Have a great day. Goodbye.')
         else:
             pass
+
+
 
 
 
