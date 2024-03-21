@@ -174,4 +174,3 @@ Account_Status, Open_Account, Days_Open):
     "Open_Account": Open_Account,
     "Days_Open": Days_Open,
     "DSAR_Received_Date": date.today() }
-
