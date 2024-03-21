@@ -47,7 +47,7 @@ customer1 = {
 "Account_Number": 87254394,
 "Email_Address": "JackieBridges@googlecloud.com",
 "Account_Status": "Open",
-"Open_Account": "Account_Status" == "Open",
+"Open_Account": True,
 "Days_Open": 17,
 "Contact_Notes": customer1_contact_notes,
 "DSAR_Received_Date": datetime.date(2024,3,3)}
@@ -58,7 +58,7 @@ customer2 = {
 "Account_Number": 87285309,
 "Email_Address": "Chrissy.J@wikicloud.co.uk",
 "Account_Status": "Closed",
-"Open_Account": "Account_Status" == "Open",
+"Open_Account": False,
 "Days_Open": 21,
 "Contact_Notes": customer2_contact_notes,
 "DSAR_Received_Date": datetime.date(2024,2,28)}
@@ -69,7 +69,7 @@ customer3 = {
 "Account_Number": 87002645,
 "Email_Address": "BrainyJaney@live.co.uk",
 "Account_Status": "Closed",
-"Open_Account": "Account_Status" == "Open",
+"Open_Account": False,
 "Days_Open": 12,
 "Contact_Notes": customer3_contact_notes,
 "DSAR_Received_Date": datetime.date(2024,3,8)}
@@ -80,7 +80,7 @@ customer4 = {
 "Account_Number": 87124873,
 "Email_Address": "GOT.Kit@hotmail.co.uk",
 "Account_Status": "Open",
-"Open_Account": "Account_Status" == "Open",
+"Open_Account": True,
 "Days_Open": 2,
 "Contact_Notes": customer4_contact_notes,
 "DSAR_Received_Date": datetime.date(2024,3,18)}
@@ -91,7 +91,7 @@ customer5 = {
 "Account_Number": 87628112,
 "Email_Address": "therealmariah@live.com",
 "Account_Status": "Closed",
-"Open_Account": "Account_Status" == "Open",
+"Open_Account": False,
 "Days_Open": 34,
 "Contact_Notes": customer5_contact_notes,
 "DSAR_Received_Date": datetime.date(2024,2,15)}
@@ -102,7 +102,7 @@ customer6 = {
 "Account_Number": 87008752,
 "Email_Address": "BobsGoneFishing@hotmail.co.uk",
 "Account_Status": "Open",
-"Open_Account": "Account_Status" == "Open",
+"Open_Account": True,
 "Days_Open": 1,
 "Contact_Notes": customer6_contact_notes,
 "DSAR_Received_Date": datetime.date(2024,3,19)}
@@ -111,9 +111,9 @@ customer7 = {
 "First_Name": "Luke",
 "Surname": "Skywalker",
 "Account_Number": 87111872,
-"Email_Address": "TheSysTheLimit@btinternet.com",
+"Email_Address": "TheSkysTheLimit@btinternet.com",
 "Account_Status": "Open",
-"Open_Account": "Account_Status" == "Open",
+"Open_Account": True,
 "Days_Open": 11,
 "Contact_Notes": customer7_contact_notes,
 "DSAR_Received_Date": datetime.date(2024,3,9)}
@@ -124,7 +124,7 @@ customer8 = {
 "Account_Number": 87865203,
 "Email_Address": "TheHobbitOfBagEnd@hotmail.com",
 "Account_Status": "Open",
-"Open_Account": "Account_Status" == "Open",
+"Open_Account": True,
 "Days_Open": 8,
 "Contact_Notes": customer8_contact_notes,
 "DSAR_Received_Date": datetime.date(2024,3,12)}
@@ -135,7 +135,7 @@ customer9 = {
 "Account_Number": 87520365,
 "Email_Address": "RevengeAndPain@google.com",
 "Account_Status": "Closed",
-"Open_Account": "Account_Status" == "Open",
+"Open_Account": False,
 "Days_Open": 21,
 "Contact_Notes": customer9_contact_notes,
 "DSAR_Received_Date": datetime.date(2024,2,28)}
@@ -146,31 +146,32 @@ customer10 = {
 "Account_Number": 87223654,
 "Email_Address": "DeadpoolIsBack@live.com",
 "Account_Status": "Open",
-"Open_Account": "Account_Status" == "Open",
+"Open_Account": True,
 "Days_Open": 63,
 "Contact_Notes": customer10_contact_notes,
 "DSAR_Received_Date": datetime.date(2024,1,17)}
 
-customer_dictionary = {1: customer1, 2: customer2, 3: customer3, 4: customer4, 5: customer5, 6: customer6, 7: customer7, 8: customer8, 9: customer9, 10: customer10}
+customer_dictionary = {1: customer1, 2: customer2, 3: customer3, 4: customer4, 
+5: customer5, 6: customer6, 7: customer7, 8: customer8, 9: customer9, 10: customer10}
 
-def add_customer_to_dictionary(first_name, surname, account_number, email_address, account_status, open_account, days_open, dsar_received_date):
+# currently no way of adding customer data. this is included for potential expansion of system
+def add_customer_to_dictionary(First_Name, Surname, Account_Number, Email_Address, 
+Account_Status, Open_Account, Days_Open):
 
 # checks the account number is unique
-    for key in customer_dictionary:
-     if customer_dictionary[key]['Account_Number'] == account_number:
-        raise ValueError("Account Number not unique")
+  for key in customer_dictionary:
+    if customer_dictionary[key]['Account_Number'] == Account_Number:
+      raise ValueError("Account Number not unique")
 
 # if the account number is unique a new customer set should be added
-customer_dictionary[max(customer_dictionary.keys()) + 1] = {
-"First_Name": first_name,
-"Surname": surname,
-"Account_Number": account_number,
-"Email_Address": email_address,
-"Account_Status": account_status,
-"Open_Account": open_account,
-"Days_Open": days_open,
-"Contact_Notes": None,
-"DSAR_Received_Date": date.today()}
+# this is data that could be used in a future update to the system
+  customer_dictionary[max(customer_dictionary.keys()) + 1 ] = {
+    "First_Name": First_Name,
+    "Surname": Surname,
+    "Account_Number": Account_Number,
+    "Email_Address": Email_Address,
+    "Account_Status": Account_Status,
+    "Open_Account": Open_Account,
+    "Days_Open": Days_Open,
+    "DSAR_Received_Date": date.today() }
 
-def delete_customer(key):
-    del customer_dictionary[key]
